@@ -346,6 +346,7 @@ impl<'a> From<&'a Literal> for DataType {
             Literal::Null => DataType::None,
             Literal::Integer(i) if i < 0 => (i as i64).into(),
             Literal::Integer(i) => (i as u64).into(),
+            Literal::UnsignedInteger(i) => i.into(),
             Literal::String(ref s) => s.as_str().into(),
             Literal::CurrentTimestamp => {
                 let ts = chrono::Local::now().naive_local();
